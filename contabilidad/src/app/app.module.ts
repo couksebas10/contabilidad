@@ -1,18 +1,22 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser"
+import { NgModule } from "@angular/core"
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { ContabilidadService } from "./contabilidad.service"
+import { AppRoutingModule } from "./app-routing.module"
+import { AppComponent } from "./app.component"
+import { HttpClientModule } from "@angular/common/http"
+import { PersonasComponent } from "./personas/personas.component";
+import { Rutas } from "./rutas";
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent, PersonasComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    Rutas
   ],
-  providers: [],
+  providers: [ContabilidadService, HttpClientModule],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
