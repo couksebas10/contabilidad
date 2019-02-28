@@ -12,12 +12,13 @@ export class ContabilidadService {
   headers = new HttpHeaders({
     "Content-Type": "application/json; charset=utf8"
   });
-  // options = new HttpRequest({ headers: this.headers })
+
+  options = new HttpResponse({ headers: this.headers });
 
   constructor(private http: HttpClient) {}
 
   getPersonas() : Observable<Persona[]>  {
-    return this.http.get(environment.apiUrl + "/getUsuarios")
+    return this.http.get(environment.apiUrl + '/obtenerUsuarios')
     .pipe(map((data: any[]) => data.map((item: any) => new Persona (
       item._id,
       item.nombre,
@@ -26,6 +27,10 @@ export class ContabilidadService {
       item.rol
     ))),
     )
+  }
+
+  postPersona(body: Persona) {
+    return this.http.post(environment.apiUrl + '/registrarUsuario', body, this.options)
   }
 
   private extraerData(res: Response) {
